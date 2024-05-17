@@ -1,0 +1,6 @@
+services:
+  app:
+    container_name: tenants-signup-prod
+    image: tenants-signup-prod
+    ports:
+      - 80:8080
