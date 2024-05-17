@@ -1,7 +1,14 @@
+import { Route, Routes, } from "react-router-dom"
+import Root from "./components/Root"
+import Form from "./components/Form"
+
 function App() {
   return (
     <>
-      <p className="text-red-500 font-lato font-bold">Hello World!</p>
+      <Routes>
+        <Route path="/" element={<Root />} />
+        <Route path="form" element={<Form />} />
+      </Routes>
     </>
   )
 }
