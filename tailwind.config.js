@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        lato: "Lato",
+        poppins: "Poppins",
       },
     },
     plugins: [],
