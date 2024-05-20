@@ -1,19 +1,29 @@
-import { ReactElement, useState, } from "react"
+import { ReactElement, } from "react"
+import { useFormStateContext, } from "../contexts/form-state.context"
 
 export function useMultipageForm(pages: ReactElement[],) {
-  const [currentPageIndex, setCurrentPageIndex,] = useState<number>(0,)
+  const { formState, setFormState, } = useFormStateContext()
+  const { currentPageIndex, } = formState
 
   const next = () => {
-    setCurrentPageIndex((i,) => {
-      if (i === pages.length - 1) return i
-      return i + 1
+    setFormState((prev,) => {
+      const newIndex = currentPageIndex === pages.length - 1 ? currentPageIndex : currentPageIndex + 1
+
+      return {
+        ...prev,
+        currentPageIndex: newIndex,
+      }
     },)
   }
 
   const prev = () => {
-    setCurrentPageIndex((i,) => {
-      if (i === 0) return i
-      return i - 1
+    setFormState((prev,) => {
+      const newIndex = currentPageIndex === 0 ? currentPageIndex : currentPageIndex - 1
+
+      return {
+        ...prev,
+        currentPageIndex: newIndex,
+      }
     },)
   }
 
