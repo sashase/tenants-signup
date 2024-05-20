@@ -1,5 +1,5 @@
-import { MouseEvent, useState, } from "react"
 import RadioInput from "./RadioInput"
+import { useFormStateContext, } from "../contexts/form-state.context"
 
 const OPTIONS: string[] = [
   "€0 - €1.000",
@@ -9,21 +9,18 @@ const OPTIONS: string[] = [
   "Mehr als €4.000",
 ]
 
+const RADIO_INPUT_NAME: string = "income"
+
 export default function IncomePage() {
-  const [selectedIncome, setSelectedIncome,] = useState<string>("",)
-
-  const handleClick = (event: MouseEvent<HTMLInputElement>,) => {
-    const { value, } = event.target as HTMLInputElement
-    setSelectedIncome(value !== selectedIncome ? value : "",)
-  }
-
+  const { formState, handleInput, } = useFormStateContext()
   return (
     <div className="flex flex-col gap-5 items-center justify-center w-full md:w-4/5 xl:w-2/5">
       {OPTIONS.map((option,) => (
         <RadioInput
           value={option}
-          isSelected={selectedIncome === option}
-          handleClick={handleClick}
+          name={RADIO_INPUT_NAME}
+          isSelected={formState.values.income === option}
+          onClick={handleInput}
           key={option}
         />
       ),)}

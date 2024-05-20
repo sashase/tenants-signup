@@ -2,14 +2,16 @@ import { MouseEvent, } from "react"
 
 interface RadioInputProps {
   value: string
+  name: string
   isSelected: boolean
-  handleClick(event: MouseEvent<HTMLInputElement>): void
+  onClick(event: MouseEvent<HTMLInputElement>): void
 }
 
 export default function RadioInput({
   value,
+  name,
   isSelected,
-  handleClick,
+  onClick,
 }: RadioInputProps,) {
   return (
     <label
@@ -23,10 +25,10 @@ export default function RadioInput({
       <span>{value}</span>
       <input
         type="radio"
-        name={value}
+        name={name}
         id={value}
         value={value}
-        onClick={handleClick}
+        onClick={onClick}
         className="absolute h-0 w-0 appearance-none"
       />
     </label>

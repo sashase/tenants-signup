@@ -5,6 +5,8 @@ import {
   createContext,
   useState,
   useContext,
+  ChangeEvent,
+  MouseEvent,
 } from "react"
 import { FormState, } from "../interfaces"
 
@@ -50,6 +52,25 @@ export function useFormStateContext() {
       "useFormStateContext must be used within a FormStateContextProvider",
     )
   }
+  const { formState, setFormState, } = context
 
-  return context
+  const handleInput = ({
+    target,
+  }: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLInputElement>,) => {
+    const { name, value, } = target as HTMLInputElement
+
+    setFormState((prev,) => ({
+      ...prev,
+      values: {
+        ...prev.values,
+        [name]: value,
+      },
+    }),)
+  }
+
+  return {
+    formState,
+    setFormState,
+    handleInput,
+  }
 }
