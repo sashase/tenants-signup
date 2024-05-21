@@ -1,12 +1,14 @@
-import { Route, Routes, } from "react-router-dom"
+import { Route, Routes, useLocation, } from "react-router-dom"
+import { AnimatePresence, } from "framer-motion"
 import Root from "./components/Root"
 import Form from "./components/Form"
 import FormStateContextProvider from "./contexts/form-state.context"
 
 function App() {
+  const location = useLocation()
   return (
-    <>
-      <Routes>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Root />} />
         <Route
           path="/form"
@@ -17,7 +19,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </AnimatePresence>
   )
 }
 

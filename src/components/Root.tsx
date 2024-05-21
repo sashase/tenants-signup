@@ -1,8 +1,17 @@
+import { motion, } from "framer-motion"
 import { Link, } from "react-router-dom"
+import { FADE_ANIMATION, FADE_TRANSITION, } from "../constants"
 
 export default function Root() {
   return (
-    <main className="w-11/12 md:w-4/5 h-full mx-auto flex flex-col items-center justify-center gap-5 md:gap-10">
+    <motion.main
+      variants={FADE_ANIMATION}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={FADE_TRANSITION}
+      className="w-11/12 md:w-4/5 h-full mx-auto flex flex-col items-center justify-center gap-5 md:gap-10"
+    >
       <div className="flex flex-col items-center gap-2 md:gap-5">
         <h3 className="text-4xl md:text-7xl text-black font-bold">
           Traumwohnung.
@@ -17,6 +26,6 @@ export default function Root() {
       >
         Jetzt starten
       </Link>
-    </main>
+    </motion.main>
   )
 }

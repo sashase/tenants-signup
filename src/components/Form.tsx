@@ -1,10 +1,11 @@
 import { FormEvent, } from "react"
+import { motion, } from "framer-motion"
 import useMultipageForm from "../hooks/useMultipageForm"
 import useFormStateContext from "../hooks/useFormStateContext"
 import PageWrapper from "./PageWrapper"
 import ProgressBar from "./ProgressBar"
 import NavigationButtons from "./NavigationButtons"
-import { PAGES, } from "../constants"
+import { FADE_ANIMATION, FADE_TRANSITION, PAGES, } from "../constants"
 
 export default function Form() {
   const {
@@ -38,7 +39,13 @@ export default function Form() {
   return (
     <div className="w-11/12 md:w-4/5 h-full mx-auto flex flex-col items-center justify-center gap-5">
       <ProgressBar />
-      <form
+      <motion.form
+        key={formState.currentPageIndex}
+        variants={FADE_ANIMATION}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={FADE_TRANSITION}
         onSubmit={handleOnSubmit}
         className="w-full flex flex-col items-center gap-10"
       >
@@ -49,7 +56,7 @@ export default function Form() {
           isSuccessPage={isSuccessPage}
           prev={prev}
         />
-      </form>
+      </motion.form>
     </div>
   )
 }
