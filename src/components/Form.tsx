@@ -1,13 +1,23 @@
 import { FormEvent, } from "react"
 import { motion, } from "framer-motion"
 import useMultipageForm from "../hooks/useMultipageForm"
-import useFormStateContext from "../hooks/useFormStateContext"
 import PageWrapper from "./PageWrapper"
 import ProgressBar from "./ProgressBar"
 import NavigationButtons from "./NavigationButtons"
-import { FADE_ANIMATION, FADE_TRANSITION, PAGES, } from "../constants"
+import {
+  FADE_ANIMATION,
+  FADE_TRANSITION,
+  PAGES,
+  VALIDATION_RULES,
+} from "../constants"
+import useValidateFormValues from "../hooks/useValidateFormValues"
+import useFormStateContext from "../hooks/useFormStateContext"
+import useSubmitForm from "../hooks/useSubmitForm"
 
 export default function Form() {
+  const context = useFormStateContext()
+  const { formState, } = context
+
   const {
     currentComponent,
     currentTitle,
@@ -16,28 +26,22 @@ export default function Form() {
     isFirstPage,
     isOverviewPage,
     isSuccessPage,
-  } = useMultipageForm(PAGES,)
-
-  const { validateInput, setLoading, formState, } = useFormStateContext()
+  } = useMultipageForm(context, PAGES,)
+  const { validateFormValues, } = useValidateFormValues(
+    context,
+    VALIDATION_RULES,
+  )
+  const submitForm = useSubmitForm(context,)
 
   const handleOnSubmit = async (event: FormEvent,) => {
     event.preventDefault()
 
-    const isInputValid = validateInput()
+    const isInputValid = validateFormValues()
 
     if (!isInputValid) return
     if (!isOverviewPage) return next()
 
-    const values = formState.values
-    console.log("Values: ", values,)
-
-    // process 'values', send via API, etc.
-
-    // simulating an API call with 1 second delay
-    setLoading(true,)
-    await new Promise((resolve,) => setTimeout(resolve, 1000,),)
-    setLoading(false,)
-
+    await submitForm()
     next()
   }
 

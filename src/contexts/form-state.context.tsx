@@ -12,7 +12,7 @@ interface FormStateContextProviderProps {
   children: ReactNode
 }
 
-interface FormStateContext {
+export interface FormStateContext {
   formState: FormState
   setFormState: Dispatch<SetStateAction<FormState>>
 }

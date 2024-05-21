@@ -1,8 +1,7 @@
+import { FormStateContext, } from "../contexts/form-state.context"
 import { Page, } from "../interfaces"
-import useFormStateContext from "./useFormStateContext"
 
-export default function useMultipageForm(pages: Page[],) {
-  const { formState, setFormState, } = useFormStateContext()
+export default function useMultipageForm({ formState, setFormState, }: FormStateContext, pages: Page[],) {
   const { currentPageIndex, } = formState
 
   const next = () => {
