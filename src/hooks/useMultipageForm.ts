@@ -28,7 +28,6 @@ export default function useMultipageForm(pages: Page[],) {
   }
 
   return {
-    currentPageIndex,
     currentComponent: pages[currentPageIndex].component,
     currentTitle: pages[currentPageIndex].title,
     next,

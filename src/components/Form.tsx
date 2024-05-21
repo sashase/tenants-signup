@@ -8,7 +8,6 @@ import { PAGES, } from "../constants"
 
 export default function Form() {
   const {
-    currentPageIndex,
     currentComponent,
     currentTitle,
     next,
@@ -38,7 +37,7 @@ export default function Form() {
 
   return (
     <div className="w-11/12 md:w-4/5 h-full mx-auto flex flex-col items-center justify-center gap-5">
-      <ProgressBar currentPageIndex={currentPageIndex} />
+      <ProgressBar />
       <form
         onSubmit={handleOnSubmit}
         className="w-full flex flex-col items-center gap-10"
