@@ -1,5 +1,5 @@
+import useFormStateContext from "../hooks/useFormStateContext"
 import RadioInput from "./RadioInput"
-import { useFormStateContext, } from "../contexts/form-state.context"
 
 const OPTIONS: string[] = [
   "€0 - €1.000",

@@ -1,7 +1,7 @@
 import { ReactElement, } from "react"
-import { useFormStateContext, } from "../contexts/form-state.context"
+import useFormStateContext from "./useFormStateContext"
 
-export function useMultipageForm(pages: ReactElement[],) {
+export default function useMultipageForm(pages: ReactElement[],) {
   const { formState, setFormState, } = useFormStateContext()
   const { currentPageIndex, } = formState
 

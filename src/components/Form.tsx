@@ -1,6 +1,6 @@
 import { FormEvent, } from "react"
-import { useMultipageForm, } from "../hooks/useMultipageForm"
-import { useFormStateContext, } from "../contexts/form-state.context"
+import useMultipageForm from "../hooks/useMultipageForm"
+import useFormStateContext from "../hooks/useFormStateContext"
 import { PAGE_COMPONENTS, PAGE_TITLES, } from "../constants"
 import PageWrapper from "./PageWrapper"
 import ProgressBar from "./ProgressBar"

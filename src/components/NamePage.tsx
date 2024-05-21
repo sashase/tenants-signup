@@ -1,4 +1,4 @@
-import { useFormStateContext, } from "../contexts/form-state.context"
+import useFormStateContext from "../hooks/useFormStateContext"
 import FieldInput from "./FieldInput"
 
 export default function NamePage() {
