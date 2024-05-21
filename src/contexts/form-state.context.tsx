@@ -8,7 +8,8 @@ import {
   ChangeEvent,
   MouseEvent,
 } from "react"
-import { FormState, } from "../interfaces"
+import { FormState, FormValues, ValidationRule, } from "../interfaces"
+import { INITIAL_FORM_STATE, VALIDATION_RULES, } from "../constants"
 
 interface FormStateContextProviderProps {
   children: ReactNode
@@ -17,17 +18,6 @@ interface FormStateContextProviderProps {
 interface FormStateContext {
   formState: FormState
   setFormState: Dispatch<SetStateAction<FormState>>
-}
-
-const INITIAL_FORM_STATE: FormState = {
-  currentPageIndex: 0,
-  values: {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    income: "",
-  },
 }
 
 export const FormStateContext = createContext<FormStateContext | null>(null,)
@@ -68,9 +58,45 @@ export function useFormStateContext() {
     }),)
   }
 
+  const validateInput = (): boolean => {
+    const { currentPageIndex, values, } = formState
+    const pageRules = VALIDATION_RULES[currentPageIndex]
+
+    let isInputValid = true
+    const errors: { [key in keyof FormValues]?: string } = {}
+
+    if (!pageRules) {
+      setFormState((prev,) => ({
+        ...prev,
+        isInputValid,
+      }),)
+      return isInputValid
+    }
+
+    for (const [property, rule,] of Object.entries(pageRules,) as [
+      keyof FormValues,
+      ValidationRule,
+    ][]) {
+      if (!rule.pattern.test(values[property],)) {
+        isInputValid = false
+        errors[property] = rule.errorMessage
+      }
+    }
+
+    setFormState(({ currentPageIndex, values, },) => ({
+      currentPageIndex,
+      values,
+      isInputValid,
+      errors,
+    }),)
+
+    return isInputValid
+  }
+
   return {
     formState,
     setFormState,
     handleInput,
+    validateInput,
   }
 }

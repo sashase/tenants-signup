@@ -1,10 +1,8 @@
+import { FormValues, } from "."
+
 export interface FormState {
   currentPageIndex: number
-  values: {
-    firstName: string
-    lastName: string
-    email: string
-    phoneNumber: string
-    income: string
-  }
+  isInputValid: boolean
+  values: FormValues
+  errors?: { [key in keyof FormValues]?: string }
 }

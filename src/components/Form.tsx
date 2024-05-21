@@ -1,29 +1,10 @@
-import { FormEvent, ReactElement, } from "react"
+import { FormEvent, } from "react"
 import { useMultipageForm, } from "../hooks/useMultipageForm"
+import { useFormStateContext, } from "../contexts/form-state.context"
+import { PAGE_COMPONENTS, PAGE_TITLES, } from "../constants"
 import PageWrapper from "./PageWrapper"
-import NamePage from "./NamePage"
-import ContactsPage from "./ContactsPage"
-import IncomePage from "./IncomePage"
-import OverviewPage from "./OverviewPage"
-import SuccessPage from "./SuccessPage"
 import ProgressBar from "./ProgressBar"
 import NavigationButtons from "./NavigationButtons"
-
-const PAGE_COMPONENTS: ReactElement[] = [
-  <NamePage />,
-  <ContactsPage />,
-  <IncomePage />,
-  <OverviewPage />,
-  <SuccessPage />,
-]
-
-const PAGE_TITLES: string[] = [
-  "Wie heißen Sie?",
-  "Wie erreichen wir Sie?",
-  "Ihr Einkommen?",
-  "Ist das richtig?",
-  "Danke",
-]
 
 export default function Form() {
   const {
@@ -36,8 +17,12 @@ export default function Form() {
     isSuccessPage,
   } = useMultipageForm(PAGE_COMPONENTS,)
 
+  const { validateInput, } = useFormStateContext()
+
   const handleOnSubmit = (event: FormEvent,) => {
     event.preventDefault()
+    const isInputValid = validateInput()
+    if (!isInputValid) return
     next()
     if (isOverviewPage) console.log("success",)
   }

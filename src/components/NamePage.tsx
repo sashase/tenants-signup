@@ -11,6 +11,7 @@ export default function NamePage() {
         placeholder="Vorname"
         value={formState.values.firstName}
         onChange={handleInput}
+        errorMessage={formState.errors?.firstName}
       />
       <FieldInput
         type="text"
@@ -18,6 +19,7 @@ export default function NamePage() {
         placeholder="Nachname"
         value={formState.values.lastName}
         onChange={handleInput}
+        errorMessage={formState.errors?.lastName}
       />
     </div>
   )

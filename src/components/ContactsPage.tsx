@@ -11,6 +11,7 @@ export default function ContactsPage() {
         placeholder="E-mail"
         value={formState.values.email}
         onChange={handleInput}
+        errorMessage={formState.errors?.email}
       />
       <FieldInput
         type="tel"
@@ -18,6 +19,7 @@ export default function ContactsPage() {
         placeholder="Telefonnummer"
         value={formState.values.phoneNumber}
         onChange={handleInput}
+        errorMessage={formState.errors?.phoneNumber}
       />
     </div>
   )
