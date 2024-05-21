@@ -61,10 +61,18 @@ export default function useFormStateContext() {
     return isInputValid
   }
 
+  const setLoading = (value: boolean,) => {
+    setFormState((prev,) => ({
+      ...prev,
+      isLoading: value,
+    }),)
+  }
+
   return {
     formState,
     setFormState,
     handleInput,
     validateInput,
+    setLoading,
   }
 }

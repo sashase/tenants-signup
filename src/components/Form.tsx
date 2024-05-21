@@ -18,9 +18,9 @@ export default function Form() {
     isSuccessPage,
   } = useMultipageForm(PAGES,)
 
-  const { validateInput, formState, } = useFormStateContext()
+  const { validateInput, setLoading, formState, } = useFormStateContext()
 
-  const handleOnSubmit = (event: FormEvent,) => {
+  const handleOnSubmit = async (event: FormEvent,) => {
     event.preventDefault()
 
     const isInputValid = validateInput()
@@ -32,6 +32,11 @@ export default function Form() {
     console.log("Values: ", values,)
 
     // process 'values', send via API, etc.
+
+    // simulating an API call with 1 second delay
+    setLoading(true,)
+    await new Promise((resolve,) => setTimeout(resolve, 1000,),)
+    setLoading(false,)
 
     next()
   }
@@ -50,6 +55,12 @@ export default function Form() {
         className="w-full flex flex-col items-center gap-10"
       >
         <PageWrapper title={currentTitle}>{currentComponent}</PageWrapper>
+        {formState.isLoading && (
+          <div className="flex gap-2 items-center">
+            <div className="text-gray-600 border-4 border-solid border-current border-r-transparent rounded-full align-[-0.125em] animate-spin motion-reduce:animate-[spin_1.5s_linear_infinite] h-6 w-6" />
+            <span className="text-xl md:text-2xl text-gray-600">Speichern</span>
+          </div>
+        )}
         <NavigationButtons
           isFirstPage={isFirstPage}
           isOverviewPage={isOverviewPage}
