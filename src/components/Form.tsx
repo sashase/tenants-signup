@@ -17,14 +17,22 @@ export default function Form() {
     isSuccessPage,
   } = useMultipageForm(PAGE_COMPONENTS,)
 
-  const { validateInput, } = useFormStateContext()
+  const { validateInput, formState, } = useFormStateContext()
 
   const handleOnSubmit = (event: FormEvent,) => {
     event.preventDefault()
+
     const isInputValid = validateInput()
+
     if (!isInputValid) return
+    if (!isOverviewPage) return next()
+
+    const values = formState.values
+    console.log("Values: ", values,)
+
+    // process 'values', send via API, etc.
+
     next()
-    if (isOverviewPage) console.log("success",)
   }
 
   return (
