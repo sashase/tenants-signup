@@ -4,6 +4,7 @@ import useMultipageForm from "../hooks/useMultipageForm"
 import PageWrapper from "./PageWrapper"
 import ProgressBar from "./ProgressBar"
 import NavigationButtons from "./NavigationButtons"
+import LoadingSpinner from "./LoadingSpinner"
 import {
   FADE_ANIMATION,
   FADE_TRANSITION,
@@ -59,12 +60,7 @@ export default function Form() {
         className="w-full flex flex-col items-center gap-10"
       >
         <PageWrapper title={currentTitle}>{currentComponent}</PageWrapper>
-        {formState.isLoading && (
-          <div className="flex gap-2 items-center">
-            <div className="text-gray-600 border-4 border-solid border-current border-r-transparent rounded-full align-[-0.125em] animate-spin motion-reduce:animate-[spin_1.5s_linear_infinite] h-6 w-6" />
-            <span className="text-xl md:text-2xl text-gray-600">Speichern</span>
-          </div>
-        )}
+        {formState.isLoading && <LoadingSpinner label="Speichern" />}
         <NavigationButtons
           isFirstPage={isFirstPage}
           isOverviewPage={isOverviewPage}
