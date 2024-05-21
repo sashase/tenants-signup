@@ -1,21 +1,22 @@
 import { FormEvent, } from "react"
 import useMultipageForm from "../hooks/useMultipageForm"
 import useFormStateContext from "../hooks/useFormStateContext"
-import { PAGE_COMPONENTS, PAGE_TITLES, } from "../constants"
 import PageWrapper from "./PageWrapper"
 import ProgressBar from "./ProgressBar"
 import NavigationButtons from "./NavigationButtons"
+import { PAGES, } from "../constants"
 
 export default function Form() {
   const {
     currentPageIndex,
-    currentPage,
+    currentComponent,
+    currentTitle,
     next,
     prev,
     isFirstPage,
     isOverviewPage,
     isSuccessPage,
-  } = useMultipageForm(PAGE_COMPONENTS,)
+  } = useMultipageForm(PAGES,)
 
   const { validateInput, formState, } = useFormStateContext()
 
@@ -42,9 +43,7 @@ export default function Form() {
         onSubmit={handleOnSubmit}
         className="w-full flex flex-col items-center gap-10"
       >
-        <PageWrapper title={PAGE_TITLES[currentPageIndex]}>
-          {currentPage}
-        </PageWrapper>
+        <PageWrapper title={currentTitle}>{currentComponent}</PageWrapper>
         <NavigationButtons
           isFirstPage={isFirstPage}
           isOverviewPage={isOverviewPage}

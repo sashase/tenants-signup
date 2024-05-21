@@ -1,7 +1,7 @@
-import { ReactElement, } from "react"
+import { Page, } from "../interfaces"
 import useFormStateContext from "./useFormStateContext"
 
-export default function useMultipageForm(pages: ReactElement[],) {
+export default function useMultipageForm(pages: Page[],) {
   const { formState, setFormState, } = useFormStateContext()
   const { currentPageIndex, } = formState
 
@@ -29,7 +29,8 @@ export default function useMultipageForm(pages: ReactElement[],) {
 
   return {
     currentPageIndex,
-    currentPage: pages[currentPageIndex],
+    currentComponent: pages[currentPageIndex].component,
+    currentTitle: pages[currentPageIndex].title,
     next,
     prev,
     isFirstPage: currentPageIndex === 0,
