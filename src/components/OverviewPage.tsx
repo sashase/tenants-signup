@@ -12,7 +12,7 @@ export default function OverviewPage() {
         label="Telefonnummer"
         value={formState.values.phoneNumber}
       />
-      <OverviewItem label="Income" value={formState.values.income} />
+      <OverviewItem label="Einkommen" value={formState.values.income} />
     </div>
   )
 }
