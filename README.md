@@ -21,5 +21,5 @@
 - Clone the repository
 - Open cloned directory
 - Run `npm install` to install all the necessary dependencies
-- Run `npm run e2e` to run e2e tests
 - Run `npm run dev` to start application in dev mode
+- Run `npm run e2e` to run e2e tests
