@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# tenants-signup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Running in Docker
 
-Currently, two official plugins are available:
+### Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Docker 19.03.0+
 
-## Expanding the ESLint configuration
+- Clone the repository;
+- Open cloned directory;
+- Run `docker compose up -d` to start the application in a development environment and detached mode. The server starts on port 8000;
+- Run `docker compose -f compose.yml -f compose.prod.yml up -d` to start the application in a production environment and detached mode. The server starts on port 8080 and maps to the port 80 on a host.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Running Locally
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. Node.js v16+
+1. npm v8+
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Clone the repository
+- Open cloned directory
+- Run `npm install` to install all the necessary dependencies
+- Run `npm run e2e` to run e2e tests
+- Run `npm run dev` to start application in dev mode
