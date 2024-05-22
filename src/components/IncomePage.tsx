@@ -1,6 +1,7 @@
 import useFormInput from "../hooks/useFormInput"
 import useFormStateContext from "../hooks/useFormStateContext"
 import RadioInput from "./RadioInput"
+import ErrorMessage from "./ErrorMessage"
 
 const OPTIONS: string[] = [
   "€0 - €1.000",
@@ -24,13 +25,10 @@ export default function IncomePage() {
           isSelected={values.income === option}
           onClick={onInteraction}
           key={option}
+          dataCy={`input-income-${option}`}
         />
       ),)}
-      {errors?.income && (
-        <p className="text-xl md:text-2xl text-red-500 text-center">
-          {errors?.income}
-        </p>
-      )}
+      {errors?.income && <ErrorMessage content={errors.income} />}
     </div>
   )
 }

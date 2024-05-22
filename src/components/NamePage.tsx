@@ -14,6 +14,7 @@ export default function NamePage() {
         value={values.firstName}
         onChange={onInteraction}
         errorMessage={errors?.firstName}
+        dataCy="input-firstName"
       />
       <FieldInput
         type="text"
@@ -22,6 +23,7 @@ export default function NamePage() {
         value={values.lastName}
         onChange={onInteraction}
         errorMessage={errors?.lastName}
+        dataCy="input-lastName"
       />
     </div>
   )

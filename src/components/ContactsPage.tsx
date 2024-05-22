@@ -14,6 +14,7 @@ export default function ContactsPage() {
         value={values.email}
         onChange={onInteraction}
         errorMessage={errors?.email}
+        dataCy="input-email"
       />
       <FieldInput
         type="tel"
@@ -22,6 +23,7 @@ export default function ContactsPage() {
         value={values.phoneNumber}
         onChange={onInteraction}
         errorMessage={errors?.phoneNumber}
+        dataCy="input-phoneNumber"
       />
     </div>
   )

@@ -28,6 +28,7 @@ export default function NavigationButtons({
       {!isSuccessPage ? (
         <button
           type="submit"
+          data-cy="button-next-page"
           className="bg-blue-500 text-xl md:text-2xl text-white px-8 py-3 rounded-3xl shadow-md shadow-gray-100"
         >
           {isOverviewPage ? "Fertig" : "Weiter"}
@@ -35,6 +36,7 @@ export default function NavigationButtons({
       ) : (
         <Link
           to="/"
+          data-cy="button-end-flow"
           className="bg-blue-500 text-xl md:text-2xl text-white px-8 py-3 rounded-3xl shadow-md shadow-gray-100"
         >
           Beenden
